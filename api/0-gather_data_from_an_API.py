@@ -30,4 +30,4 @@ if __name__ == '__main__':
         f"Employee {employee_name} is done with {done_tasks}/{total} tasks:")
 
     for todo in completed_tasks:
-        print("\t", todo['title'])
+        print(f"\t", {todo['title']})
