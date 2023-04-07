@@ -5,6 +5,7 @@ import requests
 import sys
 
 
+""" def """
 employee_id = sys.argv[1]
 
 """Get employee information"""
