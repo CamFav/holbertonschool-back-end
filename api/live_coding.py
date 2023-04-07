@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Python script using JSONPlaceholder, for a given employee ID,
 returns information about his/her TODO list progress."""
-
 import requests
 import sys
 
@@ -27,8 +26,7 @@ for todo in todos:
 number_of_done_tasks = len(completed_tasks)
 total_number_of_tasks = len(todos)
 
-print(
-    f"Employee {employee_name} is done with {number_of_done_tasks}/{total_number_of_tasks} tasks:")
+print(f"Employee {employee_name} is done with {number_of_done_tasks}/{total_number_of_tasks} tasks:")
 
 for todo in completed_tasks:
     print("\t", todo['title'])
