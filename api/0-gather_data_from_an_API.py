@@ -24,10 +24,10 @@ if __name__ == '__main__':
         if todo['completed']:
             completed_tasks.append(todo)
     done_tasks = len(completed_tasks)
-    total_tasks = len(todos)
+    total = len(todos)
 
     print(
-        f"Employee {employee_name} is done with {done_tasks}/{total_tasks} tasks:")
+        f"Employee {employee_name} is done with {done_tasks}/{total} tasks:")
 
     for todo in completed_tasks:
         print("\t", todo['title'])
