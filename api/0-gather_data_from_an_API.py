@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """ def """
-
 import requests
 import sys
 
