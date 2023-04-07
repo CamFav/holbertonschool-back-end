@@ -1,2 +1,2 @@
 # holbertonschool-back-end
-Repository for back-end exercices.
+Repository for back-end exercices. o_o
