@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-"""Python script using JSONPlaceholder, for a given employee ID,
-returns information about his/her TODO list progress."""
+""" def """
 
 import requests
 import sys
+
 
 employee_id = sys.argv[1]
 
