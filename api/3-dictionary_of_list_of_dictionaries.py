@@ -47,6 +47,8 @@ if __name__ == '__main__':
     tasks = []
     for todo in todos:
         tasks.append({"username": employee_username, "task": todo['title'], "completed": todo['completed']})
+    
+    data = {employee_id: tasks}
 
-    with open(file, mode='w') as f:
-        json.dump({employee_id: tasks}, f)
+    with open(file, mode='a+') as f:
+        json.dump(data, f)
