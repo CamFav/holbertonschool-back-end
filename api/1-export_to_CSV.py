@@ -35,5 +35,7 @@ if __name__ == '__main__':
 
     """Data to CSV"""
     file = f"{employee_id}.csv"
+    input = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
     with open(file, mode='w') as csv_file:
-        
+        my_writer = csv.writer(csv_file, delimiter = ' ')
+        my_writer.writerow(input)
