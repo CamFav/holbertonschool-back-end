@@ -41,4 +41,4 @@ if __name__ == '__main__':
     with open(file, mode='w') as csv_file:
         my_writer = csv.writer(csv_file)
         for todo in completed_tasks:
-            my_writer.writerow([employee_id, employee_username, todo['completed'], f'"{todo["title"]}"'])
+            my_writer.writerow([employee_id, employee_username, todo_completed, todo_title])
