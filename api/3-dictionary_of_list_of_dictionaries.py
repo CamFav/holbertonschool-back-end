@@ -21,14 +21,16 @@ if __name__ == '__main__':
         f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos")
     todos = response.json()
 
+    
     """Data to JSON."""
-
     file = "todo_all_employees.json"
     tasks = []
     for todo in todos:
-        tasks.append({"username": employee_username, "task": todo['title'], "completed": todo['completed']})
-    
+        title = todo.get("title")
+        completed = todo.get("completed")
+        tasks.append({"username": employee_username, "task": title, "completed": completed})
+
     data = {employee_id: tasks}
 
-    with open(file, mode='a+') as f:
-        json.dump(data, f)
+    with open("todo_all_employees.json", "a+") as file:
+        json.dump(data, file)
