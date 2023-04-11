@@ -1,36 +1,31 @@
 #!/usr/bin/python3
-""" def """
-import csv
+"""
+Python script that, using this REST API, for a given employee ID,
+returns information about his/her TODO list progress.
+"""
 import json
 import requests
-import sys
+from sys import argv
 
 
-if __name__ == '__main__':
-    employee_id = sys.argv[1]
+if __name__ == "__main__":
+    user_id = argv[1]
+    url_user = "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
+    url_todos = "https://jsonplaceholder.typicode.com/users/{}/todos".format(user_id)
 
-    """Get employee information"""
-    response = requests.get(
-        f"https://jsonplaceholder.typicode.com/users/{employee_id}")
-    employee_data = response.json()
-    employee_name = employee_data['name']
-    employee_username = employee_data['username']
+    response_user = requests.get(url_user)
+    response_todos = requests.get(url_todos)
 
-    """Get todo list"""
-    response = requests.get(
-        f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos")
-    todos = response.json()
+    user_name = response_user.json().get("username")
+    todos = response_todos.json()
 
-    
-    """Data to JSON."""
-    file = "todo_all_employees.json"
-    tasks = []
-    for todo in todos:
-        title = todo.get("title")
-        completed = todo.get("completed")
-        tasks.append({"username": employee_username, "task": title, "completed": completed})
+    todo_list = []
+    for task in todos:
+        title = task.get("title")
+        completed = task.get("completed")
+        todo_list.append({"username": user_name, "task": title, "completed": completed})
 
-    data = {employee_id: tasks}
+    data = {user_id: todo_list}
 
     with open("todo_all_employees.json", "a+") as file:
         json.dump(data, file)
