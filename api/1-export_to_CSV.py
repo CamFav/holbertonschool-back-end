@@ -39,6 +39,6 @@ if __name__ == '__main__':
     """Data to CSV."""
     file = f"{employee_id}.csv"
     with open(file, mode='w') as csv_file:
-        my_writer = csv.writer(csv_file)
+        my_writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
         for todo in completed_tasks:
-            my_writer.writerow([employee_id, employee_username, todo['completed'], f'"{todo["title"]}"'])
+            my_writer.writerow([employee_id, employee_username, todo['completed'], todo['title']])
