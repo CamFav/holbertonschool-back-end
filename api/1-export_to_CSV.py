@@ -13,7 +13,7 @@ if __name__ == '__main__':
         f"https://jsonplaceholder.typicode.com/users/{employee_id}")
     employee_data = response.json()
     employee_name = employee_data['name']
-    user_id = employee_id['id']
+    employee_username = employee_data['username']
 
     """Get todo list"""
     response = requests.get(
@@ -35,8 +35,9 @@ if __name__ == '__main__':
         print(f"\t", {todo['title']})
 
     todo_title = todo['title']
+    todo_completed = todo['completed']
     """Data to CSV"""
     file = f"{employee_id}.csv"
     with open(file, mode='w') as csv_file:
-        my_writer = csv.writer(csv_file, delimiter = ' ')
-        my_writer.writerow(f'"{user_id}","{employee_name}","{completed_tasks},"{todo_title}"')
+        my_writer = csv.writer(csv_file)
+        my_writer.writerow(f'"{employee_id}","{employee_username}","{todo_completed},"{todo_title}"')
