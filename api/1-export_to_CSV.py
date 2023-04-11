@@ -34,11 +34,9 @@ if __name__ == '__main__':
     for todo in completed_tasks:
         print(f"\t", {todo['title']})
 
-    todo_title = todo['title']
-    todo_completed = todo['completed']
     """Data to CSV."""
     file = f"{employee_id}.csv"
     with open(file, mode='w') as csv_file:
         my_writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
-        for todo in completed_tasks:
+        for todo in todos:
             my_writer.writerow([employee_id, employee_username, todo['completed'], todo['title']])
