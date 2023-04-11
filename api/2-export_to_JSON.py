@@ -44,5 +44,9 @@ if __name__ == '__main__':
 
     """Data to JSON."""
     file = f"{employee_id}.json"
-    with open("file.json", mode='w') as json_file:
-        json.dump(file, json_file)
+    tasks = []
+    for todo in todos:
+        tasks.append({"task": todo['title'], "completed": todo['completed'], "username": employee_username})
+
+    with open(file, mode='w') as f:
+        json.dump({employee_id: tasks}, f)
