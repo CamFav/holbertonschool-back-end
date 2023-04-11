@@ -7,30 +7,29 @@ import sys
 
 
 if __name__ == '__main__':
-    employee_id = sys.argv[1]
-
     """Get employee information"""
     response = requests.get(
-        f"https://jsonplaceholder.typicode.com/users/{employee_id}")
-    employee_data = response.json()
-    employee_name = employee_data['name']
-    employee_username = response.json().get("username")
+        f"https://jsonplaceholder.typicode.com/users")
+    employees = response.json()
 
     """Get todo list"""
-    response = requests.get(
-        f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos")
-    todos = response.json()
+    data = {}
+    for employee in employees:
+        employee_id = employee['id']
+        employee_username = employee['username']
+        employee_name = employee['name']
+        response = requests.get(
+            f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos")
+        todos = response.json()
 
-    
+        tasks = []
+        for todo in todos:
+            title = todo.get("title")
+            completed = todo.get("completed")
+            tasks.append({"username": employee_username, "task": title, "completed": completed})
+
+        data[str(employee_id)] = tasks
+
     """Data to JSON."""
-    file = "todo_all_employees.json"
-    tasks = []
-    for todo in todos:
-        title = todo.get("title")
-        completed = todo.get("completed")
-        tasks.append({"username": employee_username, "task": title, "completed": completed})
-
-    data = {employee_id: tasks}
-
-    with open("todo_all_employees.json", "a+") as file:
-        json.dump(data, file)
+    with open("todo_all_employees.json", "w") as file:
+        json.dump(data, file, indent=4)
