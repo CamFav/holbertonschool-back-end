@@ -18,31 +18,11 @@ if __name__ == '__main__':
 
     """Get todo list"""
     response = requests.get(
-        f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}")
+        f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos")
     todos = response.json()
 
-    """Count completed tasks"""
-    completed_tasks = []
-    for todo in todos:
-        if todo['completed']:
-            completed_tasks.append(todo)
-    done_tasks = len(completed_tasks)
-    total = len(todos)
-
-    print(
-        f"Employee {employee_name} is done with tasks({done_tasks}/{total}):")
-
-    for todo in completed_tasks:
-        print(f"\t", {todo['title']})
-
-    """Data to CSV."""
-    file = f"{employee_id}.csv"
-    with open(file, mode='w') as csv_file:
-        my_writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
-        for todo in todos:
-            my_writer.writerow([employee_id, employee_username, todo['completed'], todo['title']])
-
     """Data to JSON."""
+
     file = "todo_all_employees.json"
     tasks = []
     for todo in todos:
