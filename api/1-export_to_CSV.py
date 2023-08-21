@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """Modules"""
+import csv
 import requests
 import sys
-import csv
+
 
 def employee_todo(employee_id):
     """_summary_
