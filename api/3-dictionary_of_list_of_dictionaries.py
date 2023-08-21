@@ -17,14 +17,14 @@ def export_todo_data():
     user_data = user_response.json()
 
     all_tasks = {}
-    
+
     for user in user_data:
         user_id = user["id"]
         username = user["username"]
-        
+
         todos_response = requests.get(f"{api_url}/todos?userId={user_id}")
         todos_data = todos_response.json()
-        
+
         tasks_list = []
         for task in todos_data:
             task_info = {
