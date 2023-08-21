@@ -28,8 +28,12 @@ def employee_todo(employee_id):
     with open(antonette, mode="w", newline="") as csv_file:
         csv_writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
 
-        for task in completed_tasks:
-            csv_writer.writerow([user_data["id"], user_data["username"], task["completed"], task["title"]])
+        for task in todos_data:
+            task_completed = "True" if task["completed"] else "False"
+            csv_writer.writerow([user_data["id"],
+                                 user_data["username"],
+                                 task_completed,
+                                 task["title"]])
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
